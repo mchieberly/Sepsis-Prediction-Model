@@ -1,0 +1,55 @@
+662it [01:51,  5.96it/s]
+Vitals loaded: 15930762 rows.
+Labs loaded: 3486597 rows.
+Features created: 211362 rows.
+SIRS processing: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 57370/57370 [02:27<00:00, 388.01it/s]
+Labels generated for 226078 rows.
+Preprocessing complete: final dataset with 226078 rows saved.
+
+Original dataset shape: (226078, 79)
+Filtered to adults (age >= 18). New shape: (206271, 79)
+Numeric summary of adult subset:
+          SUBJECT_ID        HADM_ID    time_window         max_51        max_211  ...  diff_min_51265  diff_min_51301                         INTIME          label            age
+count  206271.000000  206271.000000  206271.000000  206271.000000  206271.000000  ...   206271.000000   206271.000000                         206271  206271.000000  206271.000000
+mean    36737.128040  149974.929103       1.476223     134.692303      95.841629  ...       -0.551124       -0.014252  2151-04-16 13:39:19.108363264       0.259445      64.134498
+min         3.000000  100001.000000       0.000000       0.000000       0.000000  ...    -1288.000000     -142.100000            2100-06-07 20:00:22       0.000000      18.020534
+25%     13267.000000  124896.000000       0.000000     134.000000      91.000000  ...        0.000000        0.000000  2126-03-27 02:13:00.999999488       0.000000      53.002053
+50%     26666.000000  150022.000000       1.000000     134.000000      97.000000  ...        0.000000        0.000000  2151-01-07 22:35:08.999999488       0.000000      65.823409
+75%     60020.000000  175057.000000       2.000000     134.000000      97.000000  ...        0.000000        0.000000            2176-08-05 19:06:34       1.000000      77.798768
+max     99999.000000  199999.000000       4.000000     300.000000     300.000000  ...     1210.000000      126.200000            2210-08-18 12:34:24       1.000000      90.000000
+std     29004.567693   28930.003596       1.114463      14.160992      14.674309  ...       28.325843        2.163780                            NaN       0.438331      17.027489
+
+[8 rows x 78 columns]
+Saved age distribution chart to ./data/charts/age_distribution_adults.png
+Saved gender distribution chart to ./data/charts/gender_distribution_adults.png
+Saved label distribution chart to ./data/charts/label_distribution_adults.png
+Saved time window distribution chart to ./data/charts/time_window_distribution_adults.png
+Saved correlation matrix chart to ./data/charts/correlation_matrix_adults.png
+
+Using device: cuda
+Loaded 226078 samples. Class distribution: {0: 171593, 1: 54485}
+Train: 158254, Val: 33912, Test: 33912
+Batches - Train: 2473, Val: 530, Test: 530
+Initial validation: Loss=1.0581, Acc=0.7590
+Epoch 01: Train Loss=0.7802, Val Loss=0.6224, Acc=0.8622
+Epoch 02: Train Loss=0.6071, Val Loss=0.5299, Acc=0.8812
+Epoch 03: Train Loss=0.5459, Val Loss=0.4928, Acc=0.8877
+Epoch 04: Train Loss=0.5148, Val Loss=0.4721, Acc=0.8933
+Epoch 05: Train Loss=0.4975, Val Loss=0.4630, Acc=0.8948
+Epoch 06: Train Loss=0.4877, Val Loss=0.4787, Acc=0.8900
+Epoch 07: Train Loss=0.4802, Val Loss=0.4521, Acc=0.8960
+Epoch 08: Train Loss=0.4727, Val Loss=0.4508, Acc=0.8986
+Epoch 09: Train Loss=0.4680, Val Loss=0.4478, Acc=0.8945
+Epoch 10: Train Loss=0.4638, Val Loss=0.4362, Acc=0.8999
+Epoch 11: Train Loss=0.4601, Val Loss=0.4431, Acc=0.8998
+Epoch 12: Train Loss=0.4566, Val Loss=0.4357, Acc=0.8991
+Epoch 13: Train Loss=0.4558, Val Loss=0.4336, Acc=0.9008
+Epoch 14: Train Loss=0.4501, Val Loss=0.4348, Acc=0.8988
+Epoch 15: Train Loss=0.4504, Val Loss=0.4258, Acc=0.9021
+Training complete in 26.75 seconds
+
+Final Evaluation:
+Loss=0.4124, Acc=0.9035
+Confusion Matrix: TN=24269, FP=1470, FN=1802, TP=6371
+Precision=0.8125, Recall=0.7795, F1=0.7957
+Model saved to ./data/model.pt
