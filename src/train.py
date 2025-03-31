@@ -98,7 +98,7 @@ def main():
 						   weight_decay=constants.TRAIN_WEIGHT_DECAY)
 
 	# Initial evaluation
-	val_loss, val_acc, _, _ = evaluate(model, val_loader, criterion, device, threshold=0.7)
+	val_loss, val_acc, _, _ = evaluate(model, val_loader, criterion, device, threshold=constants.PREDICTION_THRESHOLD)
 	print(f"Initial validation: Loss={val_loss:.4f}, Acc={val_acc:.4f}")
 
 	best_val_loss = float('inf')
@@ -108,7 +108,7 @@ def main():
 
 	for epoch in range(constants.TRAIN_NUM_EPOCHS):
 		train_loss = train_epoch(model, train_loader, criterion, optimizer, device)
-		val_loss, val_acc, _, _ = evaluate(model, val_loader, criterion, device, threshold=0.7)
+		val_loss, val_acc, _, _ = evaluate(model, val_loader, criterion, device, threshold=constants.PREDICTION_THRESHOLD)
 		print(f"Epoch {epoch+1:02d}: Train Loss={train_loss:.4f}, Val Loss={val_loss:.4f}, Acc={val_acc:.4f}")
 
 		if val_loss < best_val_loss:
@@ -120,7 +120,7 @@ def main():
 	model.load_state_dict(best_model_state)
 
 	# Final evaluation
-	test_loss, test_acc, y_true, y_pred = evaluate(model, test_loader, criterion, device, threshold=0.7)
+	test_loss, test_acc, y_true, y_pred = evaluate(model, test_loader, criterion, device, threshold=constants.PREDICTION_THRESHOLD)
 	cm = confusion_matrix(y_true, y_pred)
 	precision = cm[1,1] / (cm[1,1] + cm[0,1]) if (cm[1,1] + cm[0,1]) > 0 else 0
 	recall = cm[1,1] / (cm[1,1] + cm[1,0]) if (cm[1,1] + cm[1,0]) > 0 else 0
